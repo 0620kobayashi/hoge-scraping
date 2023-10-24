@@ -92,7 +92,17 @@ def get_chart():
 df_ec = get_df_ec()
 chart = get_chart()
 
+worksheet = get_worksheet()
+
+data = worksheet.get_all_values()
+df_udemy = pd.DataFrame(data[1:], columns=data[0])
+
 st.title('WEBスクレイピング活用アプリ')
 st.write('## Udemy情報')
 st.altair_chart(chart, use_container_width=True)
-st.write('## EC在庫情報', df_ec)
+
+st.data_editor(df_udemy, width=800)
+
+st.write('## EC在庫情報')
+
+st.data_editor( df_ec, width=800)
